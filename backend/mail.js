@@ -2,8 +2,8 @@ function sendMailSecret(email, name, friend) {
 
     var nodemailer = require('nodemailer');
 
-    var $usuario = 'bognar.junior@gmail.com';
-    var $senha = 'c0r1nth14ns';  
+    var $usuario = 'email@gmail.com';
+    var $senha = 'senha';  
 
     var transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -13,7 +13,7 @@ function sendMailSecret(email, name, friend) {
         }
     });
 
-    var $destinatario = 'bognar_junior@yahoo.com.br';
+    var $destinatario = email;
 
     var mailOptions = {
         from: $usuario,

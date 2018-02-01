@@ -1,0 +1,24 @@
+<table class="bordered">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Amigo</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        <tr *ngFor="let p of people">
+            <td>{{ p.name }}</td>
+            <td>{{ p.email }}</td>
+            <td>{{ p.friend }}</td>
+            <td>
+                <a class="btn-floating btn waves-effect waves-light red darken-4" (click)="onDelete(p)"><i class="material-icons">delete_forever</i></a>
+                <a class="btn-floating btn waves-effect waves-light light-blue darken-2" [routerLink]="['../edit', p._id]"><i class="material-icons">edit</i></a>
+            </td>
+            
+        </tr>
+    </tbody>
+  </table>

@@ -1,0 +1,26 @@
+<ng-container *ngIf="person">
+    <div class="row">
+            <form class="col s12" name="form" id="form">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">account_box</i>
+                        <input [(ngModel)]="person.name" type="text" class="validate" name="name">
+                        <label for="nome" [ngClass]="{ 'active': person.name != '' }">Nome</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">email</i>
+                        <input [(ngModel)]="person.email" type="email" class="validate" name="email">
+                        <label for="email" [ngClass]="{ 'active': person.email != '' }">Email</label>
+                    </div>
+                </div>
+                <div class="row center">
+                    <a class="waves-effect green accent-4 btn" (click)="onSend()"><i class="material-icons left">save</i>Salvar</a>
+                    <a class="waves-effect  red darken-3 btn" (click)="onClear()"><i class="material-icons left">cancel</i>Cancelar</a>
+                </div>
+            </form>
+        </div>
+</ng-container>
+
+

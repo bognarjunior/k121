@@ -15,13 +15,25 @@ export class HomeComponent implements OnInit {
     }
 
     onRaffle() {
-        this.http
-        .get('http://localhost:3000/api/raffle')
-        .subscribe(data => {
+        let promise = new Promise((resolve, reject) => {
+            this.http
+                .get('http://localhost:3000/api/raffle')
+                .toPromise()
+                .then(
+                    res => { // Success
+                        this.router.navigate(['/list']);
+                        resolve();
+                    },
+                    msg => { // Error
+                        reject(msg);
+                    })
+        });
+        
+        /* .subscribe(data => {
             if (data['status'] == 200) {
                 this.router.navigate(['/list']);
             }
-        });
+        }); */
     }
 
 }

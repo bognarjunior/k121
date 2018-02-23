@@ -34,5 +34,4 @@ export class FormComponent implements OnInit {
         this.person.name = undefined;
         this.person.email = undefined;
     }
-
 }

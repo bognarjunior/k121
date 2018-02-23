@@ -1,5 +1,9 @@
 const express = require('express');
+const mongoose = require('mongoose'); 
 const router = express.Router();
+
+mongoose.connect('mongodb://localhost/secret');
+mongoose.Promise = Promise;
 
 const email = require('../utils/mail');
 const Contatos = require('../models/people');
@@ -7,28 +11,21 @@ const Contatos = require('../models/people');
 //Find
 router.get('/', (req, res, next) => {
     Contatos.find()
-        .then((data) => {
-            res.json(
-                data
-            );
-        });
+        .then( data => res.json(data));
 });
 
 //FindId
 router.get('/search', (req, res, next) => {
 
     Contatos.findById(req.query.id, (err, data) => {
-        if (err) {
-            console.error('error, no entry found');
-        }
-        res.json(
-            data
-        );
+        if (err) console.error('error, no entry found');
+
+        res.json(data);
     })
 });
 
 //New Post
-router.post('/new', function (req, res, next) {
+router.post('/new', (req, res, next) => {
 
     let item = {
         name: req.body.name,
@@ -36,7 +33,8 @@ router.post('/new', function (req, res, next) {
     };
 
     let data = new Contatos(item);
-    data.save(function (err) {
+
+    data.save( err => {
         if (err) {
             res.json({
                 success: false,
@@ -57,14 +55,13 @@ router.post('/edit',  (req, res, next) => {
     const id = req.body._id;
 
     Contatos.findById(id, (err, data) => {
-        if (err) {
-            console.error('error, no entry found');
-        }
+        if (err) console.error('error, no entry found');
 
         data.name = req.body.name;
         data.email = req.body.email;
         data.friend = req.body.friend;
-        data.save( (err) => {
+
+        data.save( err => {
             if (err) {
                 res.json({
                     success: false,
@@ -89,12 +86,13 @@ router.post('/delete', (req, res, next) => {
             message: "Removido com sucesso!",
             id: cont._id
         };
+
         res.status(200).send(response);
     }).exec();
 });
 
 //Edit
-router.get('/raffle', async (req, res, next) => {
+router.get('/raffle', (req, res, next) => {
 
     Contatos.find()
         .then( data => {
@@ -121,8 +119,6 @@ router.get('/raffle', async (req, res, next) => {
                 };
                 res.status(500).send(response);
             }
-
-
         });
 });
 
@@ -169,9 +165,7 @@ let getRandon = array => {
 let savefriend = obj => {
 
     Contatos.findById(obj._id, (err, data) => {
-        if (err) {
-            return false;
-        }
+        if (err) return false;
 
         data.friend = obj.friend;
         data.save( err => {

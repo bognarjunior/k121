@@ -1,9 +1,5 @@
 const express = require('express');
-const mongoose = require('mongoose');  
 const bodyParser = require('body-parser');
-
-mongoose.connect('mongodb://localhost/secret');  
-mongoose.Promise = global.Promise
 
 const app = express();
 const router = require('./routes/route');
@@ -28,5 +24,4 @@ app.use( (req, res, next) => {
 const porta = process.env.PORT || 3000;
 
 app.use('/api', router);
-
 app.listen(porta, () => console.log('Servidor rodando na porta: ' + porta +"!"));

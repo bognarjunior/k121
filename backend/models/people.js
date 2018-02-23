@@ -16,5 +16,4 @@ const peopleSchema = new Schema({
     friend: { type: String, required: false },
 }, { collection: 'contatos' });
 
-
 module.exports = mongoose.model('People', peopleSchema);

@@ -22,7 +22,6 @@ export class ContatoDetalheComponent implements OnInit {
             this.id = params['id'];
             this.getData();
         });
-       
     }
 
     ngOnDestroy() {
@@ -34,8 +33,7 @@ export class ContatoDetalheComponent implements OnInit {
             this.person = { 
                 ...data 
             }
-            console.log(this.person)}
-        );
+        });
     }
 
     getConfig() {
@@ -43,15 +41,16 @@ export class ContatoDetalheComponent implements OnInit {
     }
 
     onSend() {
-        console.log(this.person);
         this.http
         .post('http://localhost:3000/api/edit', this.person)
         .subscribe(data => {
-            console.log(data);
             if (data['success'] == true) {
                 this.router.navigate(['/list']);
             }
         });
     }
 
+    onClear(): void {
+        this.router.navigate(['/list']);
+    }
 }

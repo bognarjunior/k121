@@ -2,8 +2,8 @@ const sendMailSecret = (email, name, friend) => {
 
     const nodemailer = require('nodemailer');
 
-    let $usuario = 'bognar.junior@gmail.com';
-    let $senha = 'devil4fun';  
+    let $usuario = 'email@gmail.com';
+    let $senha = 'senha';  
 
     let transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -13,7 +13,7 @@ const sendMailSecret = (email, name, friend) => {
         }
     });
 
-    let $destinatario = 'bognar_junior@yahoo.com.br'//email;
+    let $destinatario = email;
 
     let mailOptions = {
         from: $usuario,
